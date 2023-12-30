@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('includes/MainCss.ejs') %>
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:../../partials/_sidebar.html -->
+        <%- include('includes/HeaderMenu.ejs') %>
+        
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                     
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Create Additional Accounts Form</h4>
+                                  
+                                    <form class="forms-sample">
+                                        <div class="form-group">
+                                            <label for="exampleSelectGender">Select Type</label>
+                                            <select class="form-control" id="Account_Type">
+                                            <option>Savings Account</option>
+                                            <option>Checking Account</option>
+                                            <option>Fixed Deposit</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Account Name</label>
+                                            <input type="text" class="form-control" id="Generic_Name" placeholder="000003456">
+                                        </div>
+                                   
+                                      
+                                        <button class="btn btn-primary mr-2" id="CreateAccount">Create Account</button>
+                                        <button class="btn btn-light">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                 
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © ATFM 2020</span>
+                              
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="" target="_blank">AUSSIES TRUIST FINANCIAL MANAGEMENT 
+                                    BANK</div>
+                            </div>
+                        </div>
+                       
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="assets/js/jquery-1.3.2.min.js"></script>
+    <script>
+         document.getElementById('CreateAccount').addEventListener('click', function(e){
+            e.preventDefault()
+            let Account_Type = document.getElementById('Account_Type').value;
+            let Generic_Name = document.getElementById('Generic_Name').value
+            let Data = {Account_Type, Generic_Name}
+
+            $.ajax({
+                  type: 'POST',
+                  url: '/create-additional-account',
+                  ContentType: 'application/json',
+                  data: Data,
+                  success: function(data) {
+                     alert('account created successfully')
+                  }
+                });
+         })
+    </script>
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets//js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="assets/js/file-upload.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>

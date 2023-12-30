@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('includes/MainCss.ejs') %>
+    <style>
+          body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      font-size: 24px;
+    }
+    
+    .balance {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .transaction-history {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .transaction-history table tr:hover{
+       cursor: pointer;
+    }
+    
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 100%;
+        
+      }
+    }
+
+    body{
+  
+}
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #333;
+}
+.profile-head h6{
+    color: #996515;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #996515;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    color: #996515;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:./partials/_sidebar.html -->
+        <%- include('includes/HeaderMenu.ejs') %>
+            <!-- partial -->
+            <div class="main-panel">
+               
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                   
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                            <h5>
+                                <%= User.FirstName %> <%= User.LastName %> 
+                            </h5>
+                            <% if (User.profilePhoto) { %>
+                                <img src="/passportImages/<%= User.profilePhoto %>" style="width: 150px;"/>
+                               
+                              <% } else { %>
+                                <img src="/passportImages/user-passport.png" style="width: 150px;"/>
+                              <% } %>
+                                       
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                              
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="profile-edit-btn" name="btnAddMore" value="Edit Profile" readonly/>
+                    </div>
+                </div>
+                <div class="row">
+                  
+                    <div class="col-md-12">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Account Type</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"> <%= User.Account_Type %></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Telephone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Telephone %></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.inputEmail %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <hr>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Address %></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>City </label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.City %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Region</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Region %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Country</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Country %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <hr>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Date Of Birth</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Date_of_birth %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Social Security</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Social_Security %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Telephone Mobile</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Telephone_Mobile %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Telephone Office</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Telephone_Office %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <hr>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Next Of Kin</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Next_of_Kin  %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Next Of Kin's Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Next_of_Kin_address  %></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Next Of Kin's Telephone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p style="color:#996515"><%= User.Next_of_kin_telephone %></p>
+                                            </div>
+                                        </div>
+
+                                            
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:./partials/_footer.html -->
+                <footer class="footer">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © ATFM 2020</span>
+                              
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="" target="_blank"style="color:#996515">AUSSIES TRUIST FINANCIAL MANAGEMENT  BANK</div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <script src="assets/js/jquery-1.3.2.min.js"></script>
+       
+    
+      </script>
+    <!-- base:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>

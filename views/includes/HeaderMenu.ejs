@@ -1,0 +1,194 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item sidebar-category">
+            <div style="display: flex">
+        
+                <div
+                  style="
+                    width: 30px;
+                    height: 30px;
+                    background-color: #d4af37;
+                    border-radius: 50%;
+                    margin: 0 5px 0 5px;
+                    text-align: center;
+                    font-weight: bold;
+                    line-height: 30px;
+                    color: white;
+                  "class="rotating-circle"
+                >
+                  $
+                </div>
+                <style>
+                    @keyframes rotateBorder {
+                      to {
+                        transform: rotate(360deg);
+                      }
+                    }
+                  
+                    .rotating-circle {
+                      position: relative;
+                      width: 30px;
+                      height: 30px;
+                      background-color: #d4af37;
+                      border-radius: 50%;
+                      margin: 0 5px 0 5px;
+                      text-align: center;
+                      font-weight: bold;
+                      line-height: 30px;
+                      color: white;
+                      overflow: hidden;
+                    }
+                  
+                    .rotating-circle::before {
+                      content: '';
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                      border-top: 2px solid white; /* Initial border color */
+                      border-bottom: 2px solid #FFD700; /* Initial border color */
+                      border-radius: inherit;
+                      animation: rotateBorder 3s linear infinite; /* Adjust the duration as needed */
+                    }
+                  </style>
+                  
+                  <div class="rotating-circle">£</div>
+                  
+                <div
+                  style="
+                    width: 30px;
+                    height: 30px;
+                    background-color: #d4af37;
+                    border-radius: 50%;
+                    margin: 0 5px 0 5px;
+                    text-align: center;
+                    font-weight: bold;
+                    line-height: 30px;
+                    color: white;
+                  "class="rotating-circle"
+                >
+                €
+                </div>
+                <div
+                  style="
+                    width: 30px;
+                    height: 30px;
+                    background-color: #d4af37;
+                    border-radius: 50%;
+                    margin: 0 5px 0 5px;
+                    text-align: center;
+                    font-weight: bold;
+                    line-height: 30px;
+                    color: white;
+                  "class="rotating-circle"
+                >
+                  $
+                </div>
+              </div>
+            <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard">
+                <i class="mdi mdi-view-quilt menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+                <div class="badge badge-info badge-pill"></div>
+         </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/profile">
+                  <i class="mdi mdi-emoticon menu-icon"></i>
+                  <span class="menu-title">Profile</span>
+                  <div class="badge badge-info badge-pill"></div>
+            </a>
+          </li>
+
+             
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="mdi mdi-email menu-icon"></i>
+                <span class="menu-title">Support</span>
+           </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="">
+                <i class="mdi mdi-bell-outline menu-icon"></i>
+                <span class="menu-title">News Feed</span>
+           </a>
+        </li>
+      
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/user-transction-history">
+                <i class="mdi mdi-chart-line menu-icon"></i>
+                <span class="menu-title">History</span>
+           </a>
+        </li>
+    
+    </ul>
+</nav>
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+    <!-- partial:./partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+    <span class="mdi mdi-menu"></span>
+  </button>
+            <div class="navbar-brand-wrapper">
+                <a class="navbar-brand brand-logo" href="/dashboard"> <img src="images/logo/tfblogo.png.jpeg" alt="logo" style="width: 120px;border-radius: 50%;height: 40px;"></a>
+                <a class="navbar-brand brand-logo-mini" href="/dashboard"> <img src="images/logo/tfblogo.png.jpeg" alt="logo" style="width: 120px;border-radius: 50%;height: 40px;"></a>
+            </div>
+            <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome back, <%= User.FirstName %> <%= User.LastName %></h4>
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item">
+                    <h4 class="mb-0 font-weight-bold d-none d-xl-block" id="Today_Date"></h4>
+                </li>
+
+
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    <span class="mdi mdi-menu"></span>
+  </button>
+        </div>
+        <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
+            <ul class="navbar-nav mr-lg-2">
+                <li class="nav-item nav-search d-none d-lg-block">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+
+                        <span class="nav-profile-name">Account Profile</span>
+                   </a>
+
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="/profile">
+                        <i class="mdi mdi-settings text-primary"></i>
+                        Profile
+                        </a>
+                      <a class="dropdown-item" id="LogOut">
+                        <i class="mdi mdi-logout text-primary"></i>
+                        Logout
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+         document.getElementById('LogOut').addEventListener('click', function(e){
+            e.preventDefault();
+            localStorage.removeItem('otpVerified');
+            window.location = '/logout'
+         })
+    </script>

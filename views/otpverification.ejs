@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Factor Authentication</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: hsl(202, 100%, 98%);
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+        .otp-input {
+            width: 40px;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+        }
+        .submit{
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        @media screen and (max-width: 480px) {
+            .otp-input {
+                width: 30px;
+                padding: 5px;
+                font-size: 14px;
+            }
+        }
+    </style>
+
+<script src="assets/js/jquery-1.3.2.min.js"></script>
+    <script>
+        
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Two-Factor Authentication</h2>
+        <p>Please enter the verification code sent to your email:</p>
+        <form action="/test/verifycode" method="post">
+            <input class="otp-input" type="text" id="digit1" name="digit1" maxlength="1" required>
+            <input class="otp-input" type="text" id="digit2" name="digit2" maxlength="1" required>
+            <input class="otp-input" type="text" id="digit3" name="digit3" maxlength="1" required>
+            <input class="otp-input" type="text" id="digit4" name="digit4" maxlength="1" required>
+            <input class="submit" type="submit" value="Verify" readonly style="background-color: #996515; color: white; text-align: center;" id="SubmitTest">
+        </form>
+    </div>
+    
+    <script>
+        
+        const otpInputs = document.querySelectorAll('.otp-input');
+
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('paste', (e) => {
+                const pastedText = e.clipboardData.getData('text');
+                
+                // Remove any non-numeric characters
+                const numericText = pastedText.replace(/\D/g, '');
+                
+                // Distribute the numeric characters across input fields
+                for (let i = 0; i < otpInputs.length && i < numericText.length; i++) {
+                    otpInputs[i].value = numericText[i];
+                }
+                
+                e.preventDefault();
+            });
+        });
+
+
+        /////////////////////////////////////////
+        
+    </script>
+</body>
+</html>

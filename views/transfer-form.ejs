@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('includes/MainCss.ejs') %>
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:../../partials/_sidebar.html -->
+        <%- include('includes/HeaderMenu.ejs') %>
+        
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                      <div style="display: none;">
+                          <p id="inputEmail"> <%= User.inputEmail %></p>
+                          <p id="Main_Account_ID"> <%= User.AccountID %></p>
+                          <p id="Main_Account_Number"> <%= User.Account_Number %></p>
+                      </div>
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Bank Transfer Form</h4>
+                                  
+                                    <form class="forms-sample">
+
+                                        <div class="form-group">
+                                            <label for="exampleInputCity1">Select Date</label>
+                                            <input type="date" class="form-control" id="dateToday" placeholder="300">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="exampleInputCity1">Tansfer Amount</label>
+                                            <input type="number" class="form-control" id="transferAmount" placeholder="300" style='border: 1px solid #996515;'>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleSelectGender">Select account your tranfering from</label>
+                                            <select class="form-control" id="AccountID" style='border: 1px solid #996515;'>
+                                                <option value="">Select account</option>
+                                                <%if(results.length > 0){ %>
+                                                    <% results.forEach(function(row){%>
+                                                      <option value="<%= row.AccountID %>"><%= row.Generic_Name %></option>
+                                                      <%});%>
+                                                      <%}else{%>
+                                                
+                                                      <% } %>
+                                               
+                                        
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Account Number</label>
+                                            <input type="text" class="form-control" id="Account_Number" placeholder="" style='border: 1px solid #996515;' readonly>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Account type</label>
+                                            <input type="text" class="form-control" id="Account_Type" placeholder="" style='border: 1px solid #996515;' readonly>
+                                        </div>
+                                      
+                                        <div class="form-group" style="display: none;">
+                                            <label for="exampleInputName1">Account Name</label>
+                                            <input type="text" class="form-control" id="Generic_Name" placeholder="" style='border: 1px solid #996515;' readonly>
+                                        </div>
+
+
+                                        <div class="form-group bored" style="">
+                                            <label for="exampleInputName1">Currency</label>
+                                            <input type="text" class="form-control" id="Currency" placeholder="" style='border: 1px solid #996515;' readonly>
+                                        </div>
+
+                                        
+                                        <div class="form-group" style="">
+                                            <label for="exampleInputName1">Currency Symbol</label>
+                                            <input type="text" class="form-control" id="Symbol" placeholder="" style='border: 1px solid #996515;' readonly>
+                                        </div>
+
+                                        <button id="ContinueDeposit" class="btn btn-primary mr-2" style="background-color: #996515;">Continue</button>
+                                        <button class="btn btn-light">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                 
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © ATFM 2023</span>
+                              
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="" target="_blank">Financial Aussies Truist Financial Management </div>
+                            </div> 
+                        </div>
+                
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <script src="assets/js/jquery-1.3.2.min.js"></script>
+    <script>
+         document.getElementById('AccountID').addEventListener('input', function(e){
+            e.preventDefault()
+            let AccountID = (e.target.value).trim()
+            let Data = {AccountID}
+            let transferAmount = Number(document.getElementById('transferAmount').value);
+            $.ajax({
+                  type: 'POST',
+                  url: '/deposit-find-account-detail',
+                  ContentType: 'application/json',
+                  data: Data,
+                  success: function(data) {
+                     console.log(data)
+                     document.getElementById('Account_Number').value = data.Account_Number
+                     document.getElementById('Generic_Name').value = data.Generic_Name
+                     document.getElementById('Account_Type').value = data.Account_Type
+
+                     document.getElementById('Currency').value = data.Currency
+                     document.getElementById('Symbol').value = data.Symbol
+
+                     let Balance = Number(data.Balance) - 10
+                     if(Balance < transferAmount){
+                        alert('Amount transfered is more than your account balance. You should always have minimum of $10 dallars to be active')
+                         if(Balance < 1){
+                            document.getElementById('transferAmount').value = 0
+                         }else{
+                            document.getElementById('transferAmount').value = Balance
+                         }
+                     }
+                  }
+                });
+         })
+
+
+         document.getElementById('ContinueDeposit').addEventListener('click', function(e){
+            e.preventDefault();
+            let transferAmount = (document.getElementById('transferAmount').value);
+            let AccountID = (document.getElementById('AccountID').value).trim()
+            let Account_Number = (document.getElementById('Account_Number').value).trim()
+            let Generic_Name = document.getElementById('Generic_Name').value
+            let Account_Type = document.getElementById('Account_Type').value
+
+            let inputEmail = (document.getElementById('inputEmail').textContent).trim()
+            let Main_Account_ID = (document.getElementById('Main_Account_ID').textContent).trim()
+            let Main_Account_Number = (document.getElementById('Main_Account_Number').textContent).trim()
+            let Currency = (document.getElementById('Currency').value).trim()
+            let Symbol = (document.getElementById('Symbol').value).trim()
+
+            let dateSelect = document.getElementById('dateToday').value
+
+            let Today = new Date()
+            let Reference = GenerateIndex()
+            let TrxID = Today.getTime()
+            let wordDate = new Date(dateSelect).toDateString();
+            let Status = 'Started'
+
+            if(transferAmount === '' || AccountID === '' || Account_Number === '' || Number(transferAmount) === 0 ){
+              alert('Ensure that all fields are filled correctly and transfer ammount is not zero!!')
+
+            }else{
+                let Data = {transferAmount, AccountID, Account_Number, Generic_Name, Account_Type, Reference, wordDate, Status, TrxID, Receiver_Name: '', Receiver_Bank: '', Receiver_Bank_Branch:'', Receiver_Account_Number:'', Receiver_Account_Holder: '', Transfer_Method:'', inputEmail:inputEmail, Main_Account_ID:Main_Account_ID, Main_Account_Number:Main_Account_Number, Currency:Currency, Symbol:Symbol }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/transfer-post-data',
+                    ContentType: 'application/json',
+                    data: Data,
+                    success: function(data) {
+                        window.location = `/transfer-data-page-two?reference=${Reference}&AccountID=${AccountID}&TrxID=${TrxID}`
+                    }
+                    });
+            }
+
+           
+            
+         })
+
+         
+         let GenerateIndex = () =>{
+                const min = 1000000000;
+                const max = 9999999999;
+            return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+    </script>
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets//js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="assets/js/file-upload.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+
+</html>

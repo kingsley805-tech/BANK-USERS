@@ -1,0 +1,586 @@
+<%- include('includes/usersinclude/Headers.ejs') %>
+  <script src="https://cdn.tailwindcss.com"></script><!-- Include Tailwind CSS from CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  
+    <style>
+        body{
+            font-family: 'Lato', sans-serif;
+        }
+        .image-box:hover .lower-content{
+            background-color: #996515;
+            color: #996515;
+        }
+
+        @media (max-width: 760px){
+            #BenDetails{
+                display: none !important;
+            }
+        }
+
+      .BenDetails{
+        display: flex; justify-content: space-between; background-color: #fff; flex-direction: row; padding: 40px; position: absolute; top: 735px; z-index: 4; border-radius: 10px; background-color: #fff; width: 90%; margin-left: 60px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+     
+      *, *::before, *::after {
+	box-sizing: border-box;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+.rainbow {
+	position: relative;
+	z-index: 0;
+	width: 400px;
+	height: 300px;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 2rem;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -2;
+		left: -50%;
+		top: -50%;
+		width: 200%;
+		height: 200%;
+		background-color: #399953;
+		background-repeat: no-repeat;
+		background-size: 50% 50%, 50% 50%;
+		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+		background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+		animation: rotate 4s linear infinite;
+	}
+	
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: 6px;
+		top: 6px;
+		width: calc(100% - 12px);
+		height: calc(100% - 12px);
+		background: white;
+		border-radius: 5px;
+		animation: opacityChange 3s infinite alternate;
+	}
+}
+
+@keyframes opacityChange {
+	50% {
+		opacity:1;
+	}
+	100% {
+		opacity: .5;
+	}
+}
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+.rainbow {
+	position: relative;
+	z-index: 0;
+	width: 400px;
+	height: 300px;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 2rem;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -2;
+		left: -50%;
+		top: -50%;
+		width: 200%;
+		height: 200%;
+		background-color: #399953;
+		background-repeat: no-repeat;
+		background-size: 50% 50%, 50% 50%;
+		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+		background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+		animation: rotate 4s linear infinite;
+	}
+	
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: 6px;
+		top: 6px;
+		width: calc(100% - 12px);
+		height: calc(100% - 12px);
+		background: white;
+		border-radius: 5px;
+		animation: opacityChange 3s infinite alternate;
+	}
+}
+
+@keyframes opacityChange {
+	50% {
+		opacity:1;
+	}
+	100% {
+		opacity: .5;
+	}
+}
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+.rainbow {
+	position: relative;
+	z-index: 0;
+	width: 90vw;
+	height: 300px;
+	border-radius: 40px;
+	overflow: hidden;
+	padding: 2rem;
+    margin: 0 20px 0 20px;
+    align-items: center;
+    justify-content: center;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -2;
+		left: -50%;
+		top: -50%;
+		width: 200%;
+		height: 200%;
+		background-color: #399953;
+		background-repeat: no-repeat;
+		background-size: 50% 50%, 50% 50%;
+		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+		background-image: linear-gradient(#996515, #996515), linear-gradient(#FFDF00, #FFDF00), linear-gradient(white, white), linear-gradient(#FFD700, #FFD700);
+		animation: rotate 4s linear infinite;
+	}
+	
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		left: 6px;
+		top: 6px;
+		width: calc(100% - 12px);
+		height: calc(100% - 12px);
+		background: white;
+		border-radius: 5px;
+		animation: opacityChange 3s infinite alternate;
+	}
+}
+
+@keyframes opacityChange {
+	50% {
+		opacity:1;
+	}
+	100% {
+		opacity: .5;
+	}
+}
+@media (max-width: 768px) {
+  .clear{
+    display: flex;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  .sm{
+    display: none;
+  }
+  .smz{
+    display: flex !important;
+    text-align: center !important;
+  }
+  .rainbow{
+    border-radius: 40px;;
+    animation: rotate 3s linear infinite;
+    animation: opacityChange 3s infinite alternate;
+  }
+  .feature-block{
+    margin: 50px 0 50px 0;
+  }
+}
+.smz{
+    display: none;
+}
+    </style>
+    
+
+</head>
+
+
+<!-- page wrapper -->
+
+<body class="boxed_wrapper ltr">
+
+    <!-- Preloader -->
+    <%- include('includes/usersinclude/menu.ejs') %>
+    <!-- End Mobile Menu -->
+
+
+    <!-- banner-section -->
+    <section class="banner-section">
+        <div class="banner-carousel owl-theme owl-carousel owl-dots-none">
+            <div class="slide-item">
+                <div class="image-layer" style="background-image:url(assets/images/banner/op2.webp)"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+                        <h5>Bank with us today</h5>
+                        <h1>The future<br />of banking is here</h1>
+                        <div class="btn-box">
+                            <a href="" class="theme-btn style-three"style='background:#996515;'>Contact us</a>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-item">
+                <div class="image-layer" style="background-image:url(assets/images/banner/op1.webp)"></div>
+                <div class="auto-container">
+                    <div class="content-box centred">
+                        <ul class="list-item clearfix">
+                            <li>.&nbsp;<a href="">Experienced</a>&nbsp;.&nbsp;</li>
+                            <li><a href="">Moneywise</a>&nbsp;.&nbsp;</li>
+                            <li><a href="">Bankroll</a>&nbsp;.&nbsp;</li>
+                        </ul>
+                        <h1>Realize your dreams <br />through our loan services</h1>
+                        <div class="btn-box">
+                            <a href="" class="theme-btn style-three mar-0"style='background:#996515;'>Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-item">
+                <div class="image-layer" style="background-image:url(assets/images/banner/p3.webp)"></div>
+                <div class="auto-container">
+                    <div class="content-box">
+                        <h5></h5>
+                        <h1>Safe guard your future<br />by investing with us.</h1>
+                        <div class="btn-box">
+                            <a href="" class="theme-btn style-three mr-10"style='background:#996515;'>Contact Us</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+        <div class="BenDetails" id="BenDetails">
+            <div>
+               <h3 style="color: #996515;">Accounts</h3>
+            </div>
+
+            <div class="vertical-line" style=" border-left: 1px solid rgb(143, 142, 142);
+            height: 40px;"></div>
+           
+            <div>
+               <h3 style="color: #996515">Remittance</h3>
+            </div>
+    
+            <div class="vertical-line" style=" border-left: 1px solid rgb(143, 142, 142);
+            height: 40px;"></div>
+            <div>
+               <h3 style="color: #996515">Loans</h3>
+            </div>
+    
+            <div class="vertical-line" style=" border-left: 1px solid rgb(143, 142, 142);
+            height: 40px;"></div>
+            <div>
+               <h3 style="color: #996515">Investments</h3>
+            </div>
+       </div>
+
+    
+    <!-- banner-section end -->
+
+ 
+
+    <!-- info-section -->
+    <section class="info-section">
+        <div class="auto-container">
+            <div class=" clear" style="display: flex;">
+                <div class="col-lg-7 col-md-12 col-sm-12 title-column">
+                    
+                    <div style="display: flex;">
+                        <div class="rainbow "style='margin:30px 70px 0 0'>
+                            <h2 style="color: #996515;font-size: 100px;margin: 30px 0 0 50px;">10</h2>
+                            <h3 style="color: #996515;margin: 0 0 0 20px;"><span style="font-size: 50px;color: #FFDF00;">£</span> ATFM PLC <span style="font-size: 50px;color: #FFDF00;">$</span></h3></div>
+                        
+                            <div style="margin: 55px 0 0 0;"class='sm'>
+                                <p >We are dedicated to responsibly providing financial services to enable growth and economic progress. Execute transactions and payments in over 50 currencies from one account</p>
+                            </div>
+                    </div>
+                </div>
+                <div style="margin: 55px 0 0 0;"class='smz'>
+                    <p >We are dedicated to responsibly providing financial services to enable growth and economic progress. Execute transactions and payments in over 50 currencies from one account</p>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12 text-column">
+                    <div class="text" style="margin: 55px 0 0 0;">
+                        <p>
+                            ATFM is a global offshore fintech bank based in the Commonwealth of Luxembourg . Our award-winning bank proudly provides tailor-made secure, next-generation digital banking services to international customers. Aussies Trust Financial Management provides corporate and correspondence banking services, local and global payments over 50 currencies.</p>
+                        <a href=""><i class="fas fa-arrow-right"style='color:#996515'></i><span>Who We Are</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+    <!-- info-section end -->
+
+
+    <!-- feature-section -->
+    <section class="feature-section">
+        <div class="auto-container">
+            <div class="row clearfix">
+                
+
+                <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                    <div class="feature-block-one wow fadeInUp animated animated" data-wow-delay="300ms" data-wow-duration="1500ms"style='border-radius:40px'>
+                        <div class="inner-box"style='border-radius:40px'>
+                            <figure class="image-box"><img src="assets/images/resource/savings.webp" alt=""style='border-radius:20px 20px 0 0'></figure>
+                            <div class="lower-content">
+                                <div class="inner" style="width: 100%; margin-left: -15px;">
+                                    <h3>Savings account</h3>
+                                    <p>A savings account is a type of bank account designed to help you save and earn interest on your money. It offers a safe place to deposit your funds while providing some level of return on your saving.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                    <div class="feature-block-one wow fadeInUp animated animated" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <figure class="image-box"><img src="assets/images/resource/acco.webp" alt=""style='border-radius:20px 20px 0 0'></figure>
+                            <div class="lower-content">
+                                <div class="inner" style="width: 100%; margin-left: -15px;">
+                                    <h3>Checking account</h3>
+                                    <p>  A checking account is a type of bank account that allows you to deposit and withdraw money for everyday transactions.Availability of ATM  Card. <br> <br></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                    <div class="feature-block-one wow fadeInUp animated animated" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <figure class="image-box"><img src="assets/images/resource/fix depo.webp" alt=""style='border-radius:20px 20px 0 0'></figure>
+                            <div class="lower-content">
+                                <div class="inner" style="width: 100%; margin-left: -15px;">
+                                    <h3>Fixed Deposits</h3>
+                                    <p>Fixed deposit is a financial instrument offered by banks and financial institutions that allows you to deposit a sum of money for a fixed period of time at a predetermined interest rate. <br> <br></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                
+            </div>
+        </div>
+    </section>
+    <!-- feature-section end -->
+
+
+
+    <!-- about-section end -->
+
+
+    <!-- service-section -->
+    <section class="service-section">
+        <div class="auto-container">
+            <div class="title-box">
+                <div class="row clearfix">
+                    <div class="col-lg-6 col-md-12 col-sm-12 title-column">
+                        <div class="sec-title right">
+                            <h5>What we provides</h5>
+                            <h2>Get Exceptional <br />Service For Growth</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 text-column">
+                        <div class="text">
+                            <p>We provide a wide range of financial services to individuals and companies in international locations outside their home country.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="inner-content">
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-md-6 col-sm-12 service-block">
+                        <div class="service-block-one wow fadeInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <h4><a href="">Offshore Bank Accounts</a></h4>
+                                <div class="inner">
+                                    <div class="icon-box"><i class="flaticon-rocket"></i></div>
+                                    <p>We offer various types of bank accounts, including personal savings accounts, checking accounts, and corporate accounts. <br> <br></p>
+                                    <a href=""><i class="fas fa-arrow-right"></i><span>Read More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 service-block">
+                        <div class="service-block-one wow fadeInUp animated animated" data-wow-delay="300ms" data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <h4><a href="">Wealth Management</a></h4>
+                                <div class="inner">
+                                    <div class="icon-box"><i class="flaticon-innovation-1"></i></div>
+                                    <p>We offer professional services in investment advice, portfolio management, estate planning, tax optimization, and trust services.</p>
+                                    <a href=""><i class="fas fa-arrow-right"></i><span>Read More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 service-block">
+                        <div class="service-block-one wow fadeInUp animated animated" data-wow-delay="600ms" data-wow-duration="1500ms">
+                            <div class="inner-box">
+                                <h4><a href="">Multi-Currency Accounts</a></h4>
+                                <div class="inner">
+                                    <div class="icon-box"><i class="flaticon-presentation"></i></div>
+                                    <p>This can be beneficial for individuals or businesses engaged in international trade or those who want to diversify their currency holdings</p>
+                                    <a href=""><i class="fas fa-arrow-right"></i><span>Read More</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- service-section end -->
+
+
+    <!-- project-section -->
+
+    <!-- cta-section -->
+    <section class="cta-section" style="background-color: #996515;">
+        <div class="pattern-layer"></div>
+        <div class="auto-container">
+            <div class="inner-container clearfix">
+                <div class="title pull-left">
+                    <h2>Create an account with us today.</h2>
+                </div>
+                <div class="btn-box pull-right">
+                    <a href="/account-register">Create Account</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- cta-section end -->
+
+
+
+
+
+    <!-- main-footer -->
+    <%- include('includes/usersinclude/footer.ejs') %>
+    <!-- main-footer end -->
+
+
+
+    <!--Scroll to top-->
+    <button class="scroll-top scroll-to-target" data-target="html">
+        <span class="fa fa-arrow-up"></span>
+    </button>
+
+
+    <!-- sidebar cart item -->
+    <div class="xs-sidebar-group info-group info-sidebar">
+        <div class="xs-overlay xs-bg-black"></div>
+        <div class="xs-sidebar-widget">
+            <div class="sidebar-widget-container">
+                <div class="widget-heading">
+                    <a href="#" class="close-side-widget">X</a>
+                </div>
+                <div class="sidebar-textwidget">
+                    <div class="sidebar-info-contents">
+                        <div class="content-inner">
+                            <div class="upper-box">
+                                <div class="logo">
+                                    <a href=""><img src="images/logo/tfblogo.png" alt="" /></a>
+                                </div>
+                                <div class="text">
+                                    <p>We provide a range of financial services to individuals and companies in international locations outside their home country.</p>
+                                </div>
+                            </div>
+                            <div class="side-menu-box">
+                                <div class="side-menu">
+                                    <nav class="menu-box">
+                                        <div class="menu-outer">
+
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="info-box">
+                                <h3>Get in touch</h3>
+                                <ul class="info-list clearfix">
+            
+                                    <li><i class="fas fa-map-marker-alt"></i> Address:77 Adelaide St, Brisbane city QLD 4000, Australia</li>
+                                    <li><i class="fas fa-envelope"></i><a href="mailto:support@my-domain.com"style='color:#996515'>Enquirers@Aussiesfinancialmanagementbank</a></li>
+                                    <li><i class="fas fa-envelope"></i><a href="mailto:support@my-domain.com"style='color:#996515'>payoutmanagement@ausisiesfinancialmanagementlbank</a></li>
+                                   
+                                </ul>
+                                <form action="" method="post" class="subscribe-form">
+                                    <div class="form-group">
+                                        <input type="email" name="email" placeholder="Email address" required="">
+                                        <button type="submit" class="theme-btn "style='background:#996515'>subscribe now</button>
+                                    </div>
+                                </form>
+                                <ul class="social-links clearfix">
+                                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a href=""><i class="fab fa-pinterest-p"></i></a></li>
+                                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END sidebar widget item -->
+
+
+    <%- include('includes/usersinclude/scriptag.ejs') %>
+
+</body>
+<!-- End of .page_wrapper -->
+
+</html>

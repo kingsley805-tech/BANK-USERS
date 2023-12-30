@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <%- include('includes/MainCss.ejs') %>
+    <style>
+         body {
+        text-align: center;
+        padding: 40px 0;
+        background: #EBF0F5;
+      }
+       h1 {
+          color: #1c6ead;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+        }
+      i {
+        color: #1c6ead;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:./partials/_sidebar.html -->
+        <%- include('includes/HeaderMenu.ejs') %>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                   <div class="row">
+                 
+                      <div class="w-100 flex-grow">
+                        <div class="card">
+                            <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+                              <i class="checkmark">✓</i>
+                            </div>
+                              <h1>Transfer Success</h1> 
+                              <p>Your transfer has been initiated successfully and waiting for approval. Approval can take from 24hrs - 48hrs.</p>
+                              <br>
+                              <button style="background-color: #1c6ead; width: 100%;"><a href="/dashboard" style="color: #fff; text-decoration: none;">GO BACK TO DASHBOARD</a></button>
+                            </div>
+                      </div>
+                   </div>
+                
+                 
+               
+                </div>
+            </div>
+
+               
+    
+                <!-- content-wrapper ends -->
+                <!-- partial:./partials/_footer.html -->
+                <footer class="footer">
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © ATFM 2023</span>
+                            
+                              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="" target="_blank">Financial Aussies Truist Financial Management Plc</div>
+                          </div> 
+                      </div>
+              
+              </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+       
+      <script>
+   
+      </script>
+    <!-- base:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>

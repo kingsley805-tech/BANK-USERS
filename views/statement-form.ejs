@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('includes/MainCss.ejs') %>
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:../../partials/_sidebar.html -->
+        <%- include('includes/HeaderMenu.ejs') %>
+        
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                     
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Statement Printing Page</h4>
+                                  
+                                    <form class="forms-sample" action="/user-statement-page" method="post">
+
+                                        <div class="form-group">
+                                            <label for="exampleSelectGender">Select account for Statement</label>
+                                            <select class="form-control" id="AccountID" name="AccountID"style='border: 1px solid #996515;' required>
+                                                <option value="">Select account</option>
+                                                <%if(results.length > 0){ %>
+                                                    <% results.forEach(function(row){%>
+                                                      <option value="<%= row.AccountID %>"><%= row.Generic_Name %></option>
+                                                      <%});%>
+                                                      <%}else{%>
+                                                
+                                                      <% } %>
+                                               
+                                        
+                                            </select>
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">From</label>
+                                            <input type="date" class="form-control" id="FromDate" name="fromDate"style='border: 1px solid #996515;' required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">To</label>
+                                            <input type="date" class="form-control" id="ToDate" name="toDate"style='border: 1px solid #996515;' required>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Account Number</label>
+                                            <input type="text" class="form-control" id="Account_Number" name="Account_Number"style='border: 1px solid #996515;' required readonly>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Currency</label>
+                                            <input type="text" class="form-control" id="Currency" name="Currency"style='border: 1px solid #996515;' required readonly>
+                                        </div>
+                                   
+                                      
+                                        <button class="btn btn-primary mr-2" id="CreateAccount" type="submit"style='border: 1px solid #996515;background:#996515'>Generate Statement</button>
+                                        <button class="btn btn-light">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                 
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © ATFM</span>
+                              
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="" target="_blank">Aussies Truist Financial Management</div>
+                            </div> 
+                        </div>
+                
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="assets/js/jquery-1.3.2.min.js"></script>
+
+    <script>
+            document.getElementById('AccountID').addEventListener('input', function(e){
+            e.preventDefault()
+            let AccountID = (e.target.value).trim()
+            let Data = {AccountID}
+           // let transferAmount = Number(document.getElementById('transferAmount').value);
+            $.ajax({
+                  type: 'POST',
+                  url: '/deposit-find-account-detail',
+                  ContentType: 'application/json',
+                  data: Data,
+                  success: function(data) {
+                     console.log(data)
+                     document.getElementById('Account_Number').value = data.Account_Number
+                     document.getElementById('Currency').value = data.Currency
+
+                  }
+                });
+         })
+    </script>
+   
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets//js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="assets/js/file-upload.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>

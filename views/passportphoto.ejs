@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Aussies Truist Financial Management Bank - Official Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/assets/css/styledash.css">
+    <!-- endinject -->
+    <!-- Fav Icon -->
+    <link rel="icon" href="/images/logo/tfblogo.png" type="image/x-icon">
+
+    <style>
+         body{
+            font-family: 'Lato', sans-serif;
+        }
+    </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <div class="container-fluid page-body-wrapper full-page-wrapper d-flex">
+            <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
+                <div class="row flex-grow">
+                    <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                        <div class="auth-form-transparent text-left p-3">
+                            <div class="brand-logo">
+                                <img src="images/logo/tfblogo.png.jpeg" alt="logo" style="width: 120px;border-radius: 50%;height: 40px;">
+                            </div>
+                            <h4>Passport Photo Upload</h4>
+                           
+                            <form class="pt-3" action="/upload-profile-Picture" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail">Select Passport Picture</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                           
+                                        </span>
+                                        </div>
+                                        <input type="file" class="form-control form-control-lg border-left-0" id="image" placeholder="Email" name="image" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display: none;">
+                                    <label for="exampleInputPassword">Account Id</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                     
+                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-lg border-left-0" id="AccountID" placeholder="Password" name="AccountID" value="<%= Data.AccountID %>" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" style="display: none;">
+                                    <label for="exampleInputPassword">inputEmail</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                     
+                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control form-control-lg border-left-0" id="inputEmail" placeholder="Password" name="inputEmail" value="<%= Data.inputEmail %>" required>
+                                    </div>
+                                </div>
+                              
+
+                                <div class="my-3">
+                                    <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Next</button>
+                                </div>
+                          
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 login-half-bg d-none d-lg-flex flex-row">
+                        <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2023 All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/template.js"></script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('includes/MainCss.ejs') %>
+    <style>
+          body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      font-size: 24px;
+    }
+    
+    .balance {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .transaction-history {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .transaction-history table tr:hover{
+       cursor: pointer;
+    }
+    
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 100%;
+        
+      }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:./partials/_sidebar.html -->
+        <%- include('includes/HeaderMenu.ejs') %>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                   <div class="row">
+                    <div class="col-12 col-xl-12 grid-margin stretch-card">
+                      <div class="w-100 flex-grow">
+                        <div class="container" style="width: 100%; background-color: #fff;">
+                          <h5>Your CAD account details</h5>
+                       <div class="transaction-history">
+                         
+                         <table>
+                           <thead>
+                             <tr>
+                               <th colspan="3"> <img src="/images/canada-flag.png" style="width: 40px;"/> Receive from a bank in CANADA </th>
+                              
+                             </tr>
+                           </thead>
+                           <tbody>
+                          
+                               <tr style="height: 60px;">
+                                   <td colspan="2" >Account holder</td>
+                                   <td colspan="1" style="text-align: end;" id="Account_Holder"><%= Data.Account_Holder %> </td>
+                                   
+                                 </tr>
+
+                              
+                                 <tr style="height: 60px;">
+                                   <td colspan="2" >Account number</td>
+                                   <td colspan="1" style="text-align: end;" id="Account_NumberTwo"><%= Data.Account_Number %></td>
+                                   
+                                 </tr>
+
+                                 
+                                 <tr style="height: 60px;">
+                                   <td colspan="2" >Institution number</td>
+                                   <td colspan="1" style="text-align: end;" id="ACHNumber"><%= Data.InstitutionNumber %></td> 
+                                 </tr>
+
+                                 <tr style="height: 60px;">
+                                  <td colspan="2" >Transit number</td>
+                                  <td colspan="1" style="text-align: end;" id="ACHNumber"><%= Data.TransitNumber %></td>
+                                  
+                                </tr>
+
+                                  
+                                 <tr style="height: 60px;">
+                                  <td colspan="2" >Account balance</td>
+                                  <td colspan="1" style="text-align: end;" id="Account_Name">$<%= Data.Balance.toFixed(2) %></td>
+                                  
+                                </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                      </div>
+                    </div>
+
+                   </div>
+                
+
+                     
+                </div>
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:./partials/_footer.html -->
+                <footer class="footer">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © ATFM 2023</span>
+                          
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="" target=""style='color:#996515'>AUSSIES TRUIST FINANCIAL MANAGEMENT  BANK</div>
+                        </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <script src="assets/js/jquery-1.3.2.min.js"></script>
+       
+    
+      </script>
+    <!-- base:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>

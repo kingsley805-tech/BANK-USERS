@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('includes/MainCss.ejs') %>
+</head>
+
+<body>
+    <div class="container-scroller d-flex">
+        <!-- partial:../../partials/_sidebar.html -->
+        <%- include('includes/HeaderMenu.ejs') %>
+        
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                       <div style="display: none;">
+                         <p id="Reference"><%= Data.reference %></p>
+                         <p id="AccountID"><%= Data.AccountID %></p>
+                         <p id="TrxID"><%= Data.TrxID %></p>
+                         <p id="wordDate"><%= Info.wordDate %></p>
+                         <p id="Account_Number"><%= Info.Account_Number %></p>
+                         <p id="Currency"><%= Info.Currency %></p>
+                         <p id="Symbol"><%= Info.Symbol %></p>
+                       </div>
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Bank Transfer Form Continuation (<%= Info.Symbol %><%= Info.transferAmount.toFixed(2) %> )</h4>
+                                  
+                                    <form class="forms-sample">
+
+                                        <div class="form-group">
+                                            <label for="exampleInputCity1">Tansfer Amount</label>
+                                            <input type="number" class="form-control" id="transferAmount" placeholder="300" style='border: 1px solid #996515;' value="<%= Info.transferAmount.toFixed(2) %>" readonly>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleSelectGender">Select account your tranfering from</label>
+                                            <select class="form-control" id="Transfer_Method" style='border: 1px solid #996515;'>
+                                                <option value="">Select Transfer Method</option>
+                                                      <option value="Standard">Standard</option>
+                                                      <option value="Express">Express</option>
+                                              </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Receiver Account Number</label>
+                                            <input type="text" class="form-control" id="Receiver_Account_Number" placeholder="" style='border: 1px solid #996515;' style='border: 1px solid #996515;'>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Receiver Name</label>
+                                            <input type="text" class="form-control" id="Receiver_Name" placeholder="" style='border: 1px solid #996515;' readonly>
+                                        </div>
+
+                                   
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Receiver Bank</label>
+                                            <input type="text" class="form-control" id="Receiver_Bank" placeholder="" style='border: 1px solid #996515;' value="Aussies Trust Financial Management" readonly>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Branch</label>
+                                            <input type="text" class="form-control" id="Receiver_Bank_Branch" placeholder="" style='border: 1px solid #996515;' value="Main Branch" readonly>
+                                        </div>
+                                    
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Receiver Account Name</label>
+                                            <input type="text" class="form-control" id="Receiver_Account_Holder" style='border: 1px solid #996515;' placeholder="" >
+                                        </div>
+
+                                        <button id="ContinueDeposit" class="btn btn-primary mr-2">Continue</button>
+                                        <button class="btn btn-light">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                 
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © ATFM 2023</span>
+                              
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="" target="_blank">AUSSIES TRUIST FINANCIAL MANAGEMENT 
+                                 BANK</div>
+                            </div> 
+                        </div>
+                
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <script src="assets/js/jquery-1.3.2.min.js"></script>
+    <script>
+
+         document.getElementById('ContinueDeposit').addEventListener('click', function(e){
+            e.preventDefault();
+            let Receiver_Name = document.getElementById('Receiver_Name').value;
+            let Transfer_Method = document.getElementById('Transfer_Method').value
+            let Receiver_Bank = document.getElementById('Receiver_Bank').value
+            let Receiver_Bank_Branch = document.getElementById('Receiver_Bank_Branch').value
+            let Receiver_Account_Number = document.getElementById('Receiver_Account_Number').value
+            let Receiver_Account_Holder = document.getElementById('Receiver_Account_Holder').value
+
+            let Reference = (document.getElementById('Reference').textContent).trim()
+            let TrxID = (document.getElementById('TrxID').textContent).trim()
+            let AccountID = (document.getElementById('AccountID').textContent).trim()
+            let Status = 'Processing'
+            let wordDate = (document.getElementById('wordDate').textContent).trim()
+            let transferAmount = document.getElementById('transferAmount').value
+            let Account_Number = (document.getElementById('Account_Number').textContent).trim()
+
+            let Currency = (document.getElementById('Currency').textContent).trim()
+            let Symbol = (document.getElementById('Symbol').textContent).trim()
+
+            let Data = {Receiver_Name, Receiver_Bank, Receiver_Bank_Branch, Receiver_Account_Number, Receiver_Account_Holder, Transfer_Method, Reference, TrxID, AccountID, Account_Number, Status, wordDate, transferAmount, Symbol, Currency }
+
+           // alert('1234')
+            $.ajax({
+                  type: 'POST',
+                  url: '/transfer-post-data-update',
+                  ContentType: 'application/json',
+                  data: Data,
+                  success: function(data) {
+                    window.location = `/transfer-success`
+                  }
+                });
+            
+         })
+
+         document.getElementById('Receiver_Account_Number').addEventListener('change', function(e){
+            let Account_Number = (e.target.value).trim()
+            let Currency = (document.getElementById('Currency').textContent).trim()
+            let Data = {Account_Number:Account_Number, Currency:Currency}
+            $.ajax({
+                  type: 'POST',
+                  url: '/transfer-fetch-receiver-info',
+                  ContentType: 'application/json',
+                  data: Data,
+                  success: function(data) {
+                    console.log(data)
+                     document.getElementById('Receiver_Name').value = data.Account_Holder
+                     document.getElementById('Receiver_Account_Holder').value = data.Account_Holder
+                  }
+                });
+         })
+
+         
+         let GenerateIndex = () =>{
+                const min = 1000000000;
+                const max = 9999999999;
+            return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+    </script>
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets//js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="assets/js/file-upload.js"></script>
+</body>
+
+</html>
